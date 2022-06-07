@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 25175529}
   - component: {fileID: 25175528}
   - component: {fileID: 25175527}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube11 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 192843061}
   - component: {fileID: 192843060}
   - component: {fileID: 192843059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube12 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,6 +789,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &448447587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448447588}
+  m_Layer: 0
+  m_Name: Ground Detector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448447588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448447587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.969, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 930664446}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456803974
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456803974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: -0}
+  m_LocalPosition: {x: -0.05, y: -8.4, z: -0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1286,7 +1316,7 @@ GameObject:
   - component: {fileID: 581719994}
   - component: {fileID: 581719993}
   - component: {fileID: 581719992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube14 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1790,7 +1820,7 @@ GameObject:
   - component: {fileID: 707331101}
   - component: {fileID: 707331100}
   - component: {fileID: 707331099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube67 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2514,6 +2544,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 750
+  sprintModifier: 2
+  normalCam: {fileID: 910567319}
+  jumpForce: 1000
+  GroundDetector: {fileID: 448447588}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &930664443
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2585,13 +2622,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930664441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 2.75, z: -54.2}
+  m_LocalPosition: {x: -10.582, y: 2.75, z: -54.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1516515150}
   - {fileID: 526409373}
   - {fileID: 910567317}
   - {fileID: 467123510}
+  - {fileID: 448447588}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3466,7 +3504,7 @@ GameObject:
   - component: {fileID: 1532214885}
   - component: {fileID: 1532214884}
   - component: {fileID: 1532214883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube14 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4428,7 +4466,7 @@ GameObject:
   - component: {fileID: 4428206476047776593}
   - component: {fileID: 184786113753733375}
   - component: {fileID: 184786113753733376}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4677,7 +4715,7 @@ GameObject:
   - component: {fileID: 1344934874087278801}
   - component: {fileID: 1356014372444072161}
   - component: {fileID: 1356014372444072162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube67
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4729,7 +4767,7 @@ GameObject:
   - component: {fileID: 8797806406979878828}
   - component: {fileID: 1507767883572152529}
   - component: {fileID: 1507767883572152530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCylinder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5085,7 +5123,7 @@ GameObject:
   - component: {fileID: 569169282188293154}
   - component: {fileID: 2635234390069276120}
   - component: {fileID: 2635234390069276121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5804,7 +5842,7 @@ GameObject:
   - component: {fileID: 2401028324070757543}
   - component: {fileID: 5722919998588701774}
   - component: {fileID: 5722919998588701775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5856,7 +5894,7 @@ GameObject:
   - component: {fileID: 5052370675864134637}
   - component: {fileID: 5836818916078908643}
   - component: {fileID: 5836818916078908644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pCube12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
