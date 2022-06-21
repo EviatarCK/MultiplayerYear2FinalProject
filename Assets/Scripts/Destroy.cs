@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroy : MonoBehaviour
+namespace Com.MultiPlayerProject
 {
-    public GameObject glass;
-    private void Update()
+    public class Destroy : MonoBehaviour
     {
-        if (Input.GetKey(KeyCode.X))
+        public GameObject glass;
+        private void Update()
         {
-            Destroy(glass);
+            if (Input.GetKey(KeyCode.X))
+            {
+                Destroy(glass);
+            }
         }
     }
 }

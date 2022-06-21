@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeColor : MonoBehaviour
+namespace Com.MultiPlayerProject
 {
-    [SerializeField] Material[] mats;
-
-    private void Start()
+    public class ChangeColor : MonoBehaviour
     {
-        var x = Random.Range(0, 5);
+        [SerializeField] Material[] mats;
 
-        GetComponent<Renderer>().material = mats[x];
+        private void Start()
+        {
+            var x = Random.Range(0, 5);
+
+            GetComponent<Renderer>().material = mats[x];
+        }
     }
 }
