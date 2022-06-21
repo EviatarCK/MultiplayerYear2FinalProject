@@ -2232,7 +2232,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5970001, z: 0.11899948}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 995050397}
   m_Father: {fileID: 1918602269}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2516,7 +2517,7 @@ MonoBehaviour:
   speed: 750
   sprintModifier: 2
   normalCam: {fileID: 910567319}
-  jumpForce: 1000
+  jumpForce: 175
   GroundDetector: {fileID: 448447588}
   Ground:
     serializedVersion: 2
@@ -2598,7 +2599,6 @@ Transform:
   - {fileID: 1918602269}
   - {fileID: 1420067656}
   - {fileID: 457334202}
-  - {fileID: 995050397}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2784,11 +2784,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995050396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5970001, z: -0.11899948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 930664446}
-  m_RootOrder: 3
+  m_Father: {fileID: 910567317}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1098989252
 PrefabInstance:

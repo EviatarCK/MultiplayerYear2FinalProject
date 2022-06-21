@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    #region Variables
     public Gun[] loadOut;
     public Transform weaponParent;
 
     private GameObject currentWeapon;
+    #endregion
 
-    private void Start()
-    {
-        
-    }
+    #region MonoBehaviorCallbacks
 
     private void Update()
     {
@@ -21,7 +20,9 @@ public class Weapon : MonoBehaviour
             Equip(0);
         }
     }
+    #endregion
 
+    #region Private Methods
     void Equip (int p_ind)
     {
         if (currentWeapon != null)
@@ -35,3 +36,4 @@ public class Weapon : MonoBehaviour
         currentWeapon = t_newWeapon;
     }
 }
+#endregion

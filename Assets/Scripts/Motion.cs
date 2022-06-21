@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Motion : MonoBehaviour
 {
+    #region Variables
     public float speed;
     public float sprintModifier;
     private Rigidbody rig;
@@ -13,12 +14,32 @@ public class Motion : MonoBehaviour
     public float jumpForce;
     public Transform GroundDetector;
     public LayerMask Ground;
+    #endregion
 
+    #region MonoBehaviorCallbacks
     void Start()
     {
         basefov = normalCam.fieldOfView;
         Camera.main.enabled = false;
         rig = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        float t_hmove = Input.GetAxisRaw("Horizontal");
+        float t_vmove = Input.GetAxisRaw("Vertical");
+      
+        bool sprint = Input.GetKey(KeyCode.LeftShift);
+        bool jump = Input.GetKey(KeyCode.Space);
+       
+        bool IsGrounded = Physics.Raycast(GroundDetector.position, Vector3.down, 0.1f, Ground);
+        bool IsJumping = jump && IsGrounded;
+        bool IsSprinting = sprint && t_vmove > 0 && !IsJumping && IsGrounded;
+
+        if (IsJumping)
+        {
+            rig.AddForce(Vector3.up * jumpForce);
+        }
     }
 
     private void FixedUpdate()
@@ -42,10 +63,7 @@ public class Motion : MonoBehaviour
             t_adjustedSpeed *= sprintModifier;
         }
 
-        if (IsJumping)
-        {
-            rig.AddForce(Vector3.up * jumpForce);
-        }
+
 
         Vector3 t_targetVelocity = transform.TransformDirection(t_direction) * t_adjustedSpeed * Time.deltaTime;
         t_targetVelocity.y = rig.velocity.y;
@@ -62,3 +80,4 @@ public class Motion : MonoBehaviour
     }
 
 }
+#endregion
