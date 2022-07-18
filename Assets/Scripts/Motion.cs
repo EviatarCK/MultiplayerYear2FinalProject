@@ -11,11 +11,18 @@ namespace Com.MultiPlayerProject
         public float sprintModifier;
         private Rigidbody rig;
         public Camera normalCam;
+        public Transform weaponParent;
         private float basefov;
         private float sprintFovModifier = 1.25f;
         public float jumpForce;
         public Transform GroundDetector;
         public LayerMask Ground;
+        private Vector3 weaponParentOrigin;
+        private Vector3 targetWeaponBobPosition;
+        private float movmentCounter;
+        private float idleCounter;
+
+
         #endregion
 
         #region MonoBehaviorCallbacks
@@ -24,6 +31,7 @@ namespace Com.MultiPlayerProject
             basefov = normalCam.fieldOfView;
             Camera.main.enabled = false;
             rig = GetComponent<Rigidbody>();
+            weaponParentOrigin = weaponParent.localPosition;
         }
 
         private void Update()
@@ -41,6 +49,25 @@ namespace Com.MultiPlayerProject
             if (IsJumping)
             {
                 rig.AddForce(Vector3.up * jumpForce);
+            }
+
+            if (t_hmove == 0 && t_vmove == 0) // headbob
+            {
+                HeadBob(idleCounter, 0.025f, 0.025f);
+                idleCounter += Time.deltaTime;
+                weaponParent.localPosition = Vector3.Lerp(weaponParent.localPosition, targetWeaponBobPosition, Time.deltaTime * 2f);
+            }
+            else if (!IsSprinting)
+            {
+                HeadBob(movmentCounter, 0.035f, 0.035f);
+                movmentCounter += Time.deltaTime * 2.7f;
+                weaponParent.localPosition = Vector3.Lerp(weaponParent.localPosition, targetWeaponBobPosition, Time.deltaTime * 6f);
+            }
+            else
+            {
+                HeadBob(movmentCounter, 0.15f, 0.075f);
+                movmentCounter += Time.deltaTime * 7f;
+                weaponParent.localPosition = Vector3.Lerp(weaponParent.localPosition, targetWeaponBobPosition, Time.deltaTime * 10f);
             }
         }
 
@@ -81,6 +108,19 @@ namespace Com.MultiPlayerProject
             }
         }
 
-    }
     #endregion
+
+
+        #region Private Methods
+
+        void HeadBob (float p_z, float p_x_intensity, float p_y_intensity)
+        {
+            targetWeaponBobPosition = weaponParentOrigin + new Vector3(Mathf.Cos(p_z) * p_x_intensity, Mathf.Sin(p_z * 2) * p_y_intensity, 0);
+        }
+
+
+
+        #endregion
     }
+
+}

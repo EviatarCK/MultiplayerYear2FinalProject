@@ -2517,6 +2517,7 @@ MonoBehaviour:
   speed: 750
   sprintModifier: 2
   normalCam: {fileID: 910567319}
+  weaponParent: {fileID: 995050397}
   jumpForce: 175
   GroundDetector: {fileID: 448447588}
   Ground:
