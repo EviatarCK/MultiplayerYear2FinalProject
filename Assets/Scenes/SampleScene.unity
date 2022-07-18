@@ -798,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448447588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457334202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Misc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 526409376}
   - component: {fileID: 526409375}
   - component: {fileID: 526409374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2215,8 +2215,8 @@ GameObject:
   - component: {fileID: 910567317}
   - component: {fileID: 910567319}
   - component: {fileID: 910567318}
-  m_Layer: 0
-  m_Name: PlayerCamera
+  m_Layer: 8
+  m_Name: Normal Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2276,7 +2276,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 887
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2495,8 +2495,8 @@ GameObject:
   - component: {fileID: 930664447}
   - component: {fileID: 930664448}
   - component: {fileID: 930664449}
-  m_Layer: 0
-  m_Name: Chapachuli
+  m_Layer: 8
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2652,6 +2652,10 @@ MonoBehaviour:
   loadOut:
   - {fileID: 11400000, guid: bf000f1cc2f5fc34db60d1ac33bbe69e, type: 2}
   weaponParent: {fileID: 995050397}
+  bulletHolePrefab: {fileID: 6889642216212027844, guid: a047f4aa8307ac64887dd8ef02630373, type: 3}
+  canBeShot:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!1 &947534353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 717208697563582499, guid: bed2da1ff9805794abf574243d1f7db9, type: 3}
@@ -2770,7 +2774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995050397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3268,7 +3272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420067656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Design
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3455,7 +3459,7 @@ GameObject:
   - component: {fileID: 1516515153}
   - component: {fileID: 1516515152}
   - component: {fileID: 1516515151}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4005,8 +4009,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918602269}
-  m_Layer: 0
-  m_Name: Camera
+  m_Layer: 8
+  m_Name: Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
