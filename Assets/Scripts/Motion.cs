@@ -17,12 +17,14 @@ namespace Com.MultiPlayerProject
         private float basefov;
         private float sprintFovModifier = 1.25f;
         public float jumpForce;
+        public int max_Health;
         public Transform GroundDetector;
         public LayerMask Ground;
         private Vector3 weaponParentOrigin;
         private Vector3 targetWeaponBobPosition;
         private float movmentCounter;
         private float idleCounter;
+        private int current_Health;
 
 
         #endregion
@@ -30,6 +32,7 @@ namespace Com.MultiPlayerProject
         #region MonoBehaviorCallbacks
         void Start()
         {
+            current_Health = max_Health;
             cameraParent.SetActive(photonView.IsMine);
 
             if (!photonView.IsMine)
@@ -144,6 +147,27 @@ namespace Com.MultiPlayerProject
 
 
         #endregion
+
+
+        #region Public Methods
+
+        
+        public void TakeDamage(int p_damage)
+        {
+            if (photonView.IsMine)
+            {
+                current_Health -= p_damage;
+                Debug.Log("HP: " + current_Health);
+
+                if (current_Health <= 0)
+                {
+                    Debug.Log("U DEAD");
+                }
+            }
+        }
+
+        #endregion
+
     }
 
 }

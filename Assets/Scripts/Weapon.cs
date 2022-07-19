@@ -71,7 +71,7 @@ namespace Com.MultiPlayerProject
             GameObject t_newWeapon = Instantiate(loadOut[p_ind].prefab, weaponParent.position, weaponParent.rotation, weaponParent) as GameObject;
             t_newWeapon.transform.localPosition = Vector3.zero;
             t_newWeapon.transform.localEulerAngles = Vector3.zero;
-            t_newWeapon.GetComponent<Sway>().enabled = photonView.IsMine;
+            t_newWeapon.GetComponent<Sway>().isMine = photonView.IsMine;
 
             currentWeapon = t_newWeapon;
         }
@@ -124,7 +124,7 @@ namespace Com.MultiPlayerProject
                     //shooting other players on network
                     if (t_hit.collider.gameObject.layer == 10)
                     {
-
+                        t_hit.collider.gameObject.GetPhotonView().RPC("TakeDamage", RpcTarget.All, loadOut[currentIndex].damage);
                     }
                 }
             }
@@ -135,6 +135,12 @@ namespace Com.MultiPlayerProject
 
         }
 
-    #endregion
+        [PunRPC]
+        private void TakeDamage(int p_damage)
+        {
+            GetComponent<Motion>().TakeDamage(p_damage);
+        }
+
+        #endregion
     }
 }
