@@ -180,7 +180,7 @@ MonoBehaviour:
   bulletHolePrefab: {fileID: 6889642216212027844, guid: a047f4aa8307ac64887dd8ef02630373, type: 3}
   canBeShot:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1143
 --- !u!114 &-3415578961157585467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 1911
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

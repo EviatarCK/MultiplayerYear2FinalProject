@@ -30,7 +30,7 @@ namespace Com.MultiPlayerProject
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Equip(0);
+                photonView.RPC("Equip", RpcTarget.All, 0);
             }
 
             if (currentWeapon != null)
@@ -39,7 +39,7 @@ namespace Com.MultiPlayerProject
 
                 if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
                 {
-                    Shoot();
+                    photonView.RPC("Shoot", RpcTarget.All);
                 }
 
                 // weapon position lock after recoil
@@ -57,6 +57,8 @@ namespace Com.MultiPlayerProject
         #endregion
 
         #region Private Methods
+
+        [PunRPC]
         void Equip(int p_ind)
         {
             if (currentWeapon != null)
@@ -93,18 +95,22 @@ namespace Com.MultiPlayerProject
             }
         }
 
+        [PunRPC]
         void Shoot()
         {
+            
             Transform t_spawn = transform.Find("Cameras/Normal Camera");
-
-            //bloom
+            
+            //setup bloom
             Vector3 t_bloom = t_spawn.position + t_spawn.forward * 1000f;
             t_bloom += Random.Range(-loadOut[currentIndex].bloom, loadOut[currentIndex].bloom) * t_spawn.up;
             t_bloom += Random.Range(-loadOut[currentIndex].bloom, loadOut[currentIndex].bloom) * t_spawn.right;
             t_bloom -= t_spawn.position;
             t_bloom.Normalize();
-
-
+            
+            //cooldown
+            currentCooldown = loadOut[currentIndex].fireRate;
+            
             //raycast
             RaycastHit t_hit = new RaycastHit();
             if(Physics.Raycast(t_spawn.position, t_bloom, out t_hit, 1000f, canBeShot))
@@ -112,14 +118,21 @@ namespace Com.MultiPlayerProject
                 GameObject t_newHole = Instantiate(bulletHolePrefab, t_hit.point + t_hit.normal * 0.001f, Quaternion.identity) as GameObject;
                 t_newHole.transform.LookAt(t_hit.point + t_hit.normal);
                 Destroy(t_newHole, 5f);
+
+                if (photonView.IsMine)
+                {
+                    //shooting other players on network
+                    if (t_hit.collider.gameObject.layer == 10)
+                    {
+
+                    }
+                }
             }
 
             //gun fx
             currentWeapon.transform.Rotate(-loadOut[currentIndex].recoil, 0, 0);
             currentWeapon.transform.position -= currentWeapon.transform.forward * loadOut[currentIndex].kickback;
 
-            //cooldown
-            currentCooldown = loadOut[currentIndex].fireRate;
         }
 
     #endregion

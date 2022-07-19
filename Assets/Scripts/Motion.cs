@@ -31,6 +31,11 @@ namespace Com.MultiPlayerProject
         void Start()
         {
             cameraParent.SetActive(photonView.IsMine);
+
+            if (!photonView.IsMine)
+            {
+                gameObject.layer = 10;
+            }
             
             basefov = normalCam.fieldOfView;
             if (Camera.main)
