@@ -22,34 +22,35 @@ namespace Com.MultiPlayerProject
 
         private void Update()
         {
-            if (!photonView.IsMine)
-            {
-                return;
-            }
 
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (photonView.IsMine && Input.GetKeyDown(KeyCode.Alpha1))
             {
                 photonView.RPC("Equip", RpcTarget.All, 0);
             }
 
             if (currentWeapon != null)
             {
-                Aim(Input.GetMouseButton(1));
-
-                if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
+                if (photonView.IsMine)
                 {
-                    photonView.RPC("Shoot", RpcTarget.All);
+                    Aim(Input.GetMouseButton(1));
+
+                    if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
+                    {
+                        photonView.RPC("Shoot", RpcTarget.All);
+                    }
+
+                    //cooldown
+                    if (currentCooldown > 0)
+                    {
+                        currentCooldown -= Time.deltaTime;
+                    }
                 }
+
 
                 // weapon position lock after recoil
                 currentWeapon.transform.localPosition = Vector3.Lerp(currentWeapon.transform.localPosition, Vector3.zero, Time.deltaTime * 4);
 
-                //cooldown
-                if (currentCooldown > 0)
-                {
-                    currentCooldown -= Time.deltaTime;
-                }
+
 
 
             }
@@ -138,7 +139,7 @@ namespace Com.MultiPlayerProject
         [PunRPC]
         private void TakeDamage(int p_damage)
         {
-            GetComponent<Motion>().TakeDamage(p_damage);
+            GetComponent<Player>().TakeDamage(p_damage);
         }
 
         #endregion
