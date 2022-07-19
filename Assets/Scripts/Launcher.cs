@@ -9,9 +9,12 @@ namespace Com.MultiPlayerProject
 {
     public class Launcher : MonoBehaviourPunCallbacks
     {
-
+        public InputField roomnameField;
+        public Slider maxPlayersSlider;
+        public Text maxPlayersValue;
         public GameObject tabMain;
         public GameObject tabRooms;
+        public GameObject tabCreate;
         public GameObject buttonRoom;
         private List<RoomInfo> roomList;
 
@@ -59,14 +62,26 @@ namespace Com.MultiPlayerProject
         public void Create()
         {
             RoomOptions options = new RoomOptions();
-            options.MaxPlayers = 8;
-            PhotonNetwork.CreateRoom("", options);
+            options.MaxPlayers = (byte)maxPlayersSlider.value;
+
+            ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
+            properties.Add("map", 0);
+            options.CustomRoomProperties = properties;
+
+
+            PhotonNetwork.CreateRoom(roomnameField.text, options);
+        }
+
+        public void ChangeMaxPlayersSlider(float t_value)
+        {
+            maxPlayersValue.text = Mathf.RoundToInt(t_value).ToString();
         }
         
         public void TabCloseAll()
         {
             tabMain.SetActive(false);
             tabRooms.SetActive(false);
+            tabCreate.SetActive(false);
         }
 
         public void TabOpenMain()
@@ -79,6 +94,12 @@ namespace Com.MultiPlayerProject
         {
             TabCloseAll();
             tabRooms.SetActive(true);
+        }
+
+        public void TabOpenCreate()
+        {
+            TabCloseAll();
+            tabCreate.SetActive(true);
         }
 
         private void ClearRoomList()
