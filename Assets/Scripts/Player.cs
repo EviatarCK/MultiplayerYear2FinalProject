@@ -26,6 +26,7 @@ namespace Com.MultiPlayerProject
         private float idleCounter;
         private int current_Health;
         private Manager manager;
+        public Weapon weapon;
 
         private Transform ui_healthbar;
 
@@ -36,6 +37,7 @@ namespace Com.MultiPlayerProject
         void Start()
         {
             manager = GameObject.Find("Manager").GetComponent<Manager>();
+            weapon = GetComponent<Weapon>();
             current_Health = max_Health;
             cameraParent.SetActive(photonView.IsMine);
 
@@ -86,6 +88,7 @@ namespace Com.MultiPlayerProject
             {
                 TakeDamage(100);
             }
+
 
             if (t_hmove == 0 && t_vmove == 0) // headbob
             {
@@ -161,7 +164,12 @@ namespace Com.MultiPlayerProject
 
         void HeadBob (float p_z, float p_x_intensity, float p_y_intensity)
         {
-            targetWeaponBobPosition = weaponParentOrigin + new Vector3(Mathf.Cos(p_z) * p_x_intensity, Mathf.Sin(p_z * 2) * p_y_intensity, 0);
+            float t_aim_adjust = 1f;
+            if (weapon.isAiming)
+            {
+                t_aim_adjust = 0.1f;
+            }
+            targetWeaponBobPosition = weaponParentOrigin + new Vector3(Mathf.Cos(p_z) * p_x_intensity * t_aim_adjust, Mathf.Sin(p_z * 2) * p_y_intensity * t_aim_adjust, 0);
         }
 
         void RefreshHealthBar()

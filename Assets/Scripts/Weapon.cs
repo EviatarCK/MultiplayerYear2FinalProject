@@ -12,6 +12,7 @@ namespace Com.MultiPlayerProject
         public Transform weaponParent;
         public GameObject bulletHolePrefab;
         public LayerMask canBeShot;
+        public bool isAiming = false;
 
         private float currentCooldown;
         private int currentIndex;
@@ -27,6 +28,10 @@ namespace Com.MultiPlayerProject
             {
                 photonView.RPC("Equip", RpcTarget.All, 0);
             }
+            if (photonView.IsMine && Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                photonView.RPC("Equip", RpcTarget.All, 1);
+            }
 
             if (currentWeapon != null)
             {
@@ -34,9 +39,19 @@ namespace Com.MultiPlayerProject
                 {
                     Aim(Input.GetMouseButton(1));
 
-                    if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
+                    if (!loadOut[currentIndex].automatic)
                     {
-                        photonView.RPC("Shoot", RpcTarget.All);
+                        if (Input.GetMouseButtonDown(0) && currentCooldown <= 0f)
+                        {
+                            photonView.RPC("Shoot", RpcTarget.All);
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetMouseButton(0) && currentCooldown <= 0f)
+                        {
+                            photonView.RPC("Shoot", RpcTarget.All);
+                        }
                     }
 
                     //cooldown
@@ -49,8 +64,6 @@ namespace Com.MultiPlayerProject
 
                 // weapon position lock after recoil
                 currentWeapon.transform.localPosition = Vector3.Lerp(currentWeapon.transform.localPosition, Vector3.zero, Time.deltaTime * 4);
-
-
 
 
             }
@@ -77,13 +90,14 @@ namespace Com.MultiPlayerProject
             currentWeapon = t_newWeapon;
         }
 
-        void Aim(bool isAiming)
+        void Aim(bool p_isAiming)
         {
+            isAiming = p_isAiming;
             Transform t_anchor = currentWeapon.transform.Find("Anchor");
             Transform t_states_ads = currentWeapon.transform.Find("States/ADS");
             Transform t_states_hip = currentWeapon.transform.Find("States/Hip");
 
-            if (isAiming)
+            if (p_isAiming)
             {
                 //aim
                 t_anchor.position = Vector3.Lerp(t_anchor.position, t_states_ads.position, Time.deltaTime * loadOut[currentIndex].aimSpeed);

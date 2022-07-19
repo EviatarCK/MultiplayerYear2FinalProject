@@ -10,6 +10,7 @@ public class Gun : ScriptableObject
     public float fireRate;
     public float bloom;
     public float recoil;
+    public bool automatic;
     public float kickback;
     public float aimSpeed;
     public GameObject prefab;
