@@ -25,6 +25,7 @@ namespace Com.MultiPlayerProject
         private float movmentCounter;
         private float idleCounter;
         private int current_Health;
+        private Manager manager;
 
 
         #endregion
@@ -32,6 +33,7 @@ namespace Com.MultiPlayerProject
         #region MonoBehaviorCallbacks
         void Start()
         {
+            manager = GameObject.Find("Manager").GetComponent<Manager>();
             current_Health = max_Health;
             cameraParent.SetActive(photonView.IsMine);
 
@@ -69,6 +71,11 @@ namespace Com.MultiPlayerProject
             if (IsJumping)
             {
                 rig.AddForce(Vector3.up * jumpForce);
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                TakeDamage(500);
             }
 
             if (t_hmove == 0 && t_vmove == 0) // headbob
@@ -161,7 +168,8 @@ namespace Com.MultiPlayerProject
 
                 if (current_Health <= 0)
                 {
-                    Debug.Log("U DEAD");
+                    manager.Spawn();
+                    PhotonNetwork.Destroy(gameObject);
                 }
             }
         }

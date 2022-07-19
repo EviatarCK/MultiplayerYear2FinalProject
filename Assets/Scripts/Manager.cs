@@ -8,7 +8,7 @@ namespace Com.MultiPlayerProject
     public class Manager : MonoBehaviour
     {
         public string player_prefab;
-        public Transform spawn_point;
+        public Transform[] spawn_points;
 
         private void Start()
         {
@@ -16,7 +16,8 @@ namespace Com.MultiPlayerProject
         }
         public void Spawn()
         {
-            PhotonNetwork.Instantiate(player_prefab, spawn_point.position, spawn_point.rotation);
+            Transform t_spawn = spawn_points[Random.Range(0, spawn_points.Length)];
+            PhotonNetwork.Instantiate(player_prefab, t_spawn.position, t_spawn.rotation);
         }
     }
 }
