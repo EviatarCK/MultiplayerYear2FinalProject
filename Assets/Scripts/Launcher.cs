@@ -16,7 +16,7 @@ namespace Com.MultiPlayerProject
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected!!");
-            Join();
+            
 
             base.OnConnectedToMaster();
         }

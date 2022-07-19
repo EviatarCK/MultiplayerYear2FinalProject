@@ -123,7 +123,7 @@ MonoBehaviour:
   normalCam: {fileID: 6127265542203580031}
   cameraParent: {fileID: 6127265543210972660}
   weaponParent: {fileID: 6127265542253345397}
-  jumpForce: 175
+  jumpForce: 70
   max_Health: 700
   GroundDetector: {fileID: 6127265542806306188}
   Ground:
@@ -583,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6127265543883527845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6199999, z: 0.356}
+  m_LocalPosition: {x: 0, y: 0.6199999, z: 0.34}
   m_LocalScale: {x: 0.5536685, y: 0.19588116, z: 0.27338}
   m_Children: []
   m_Father: {fileID: 6127265543778712224}
@@ -605,8 +605,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6127265543883527845}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
