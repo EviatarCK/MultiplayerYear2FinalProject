@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.MultiPlayerProject
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : MonoBehaviourPunCallbacks
     {
         #region Variables
         public Gun[] loadOut;
@@ -21,6 +22,12 @@ namespace Com.MultiPlayerProject
 
         private void Update()
         {
+            if (!photonView.IsMine)
+            {
+                return;
+            }
+
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Equip(0);
@@ -62,6 +69,7 @@ namespace Com.MultiPlayerProject
             GameObject t_newWeapon = Instantiate(loadOut[p_ind].prefab, weaponParent.position, weaponParent.rotation, weaponParent) as GameObject;
             t_newWeapon.transform.localPosition = Vector3.zero;
             t_newWeapon.transform.localEulerAngles = Vector3.zero;
+            t_newWeapon.GetComponent<Sway>().enabled = photonView.IsMine;
 
             currentWeapon = t_newWeapon;
         }

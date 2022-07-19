@@ -12,6 +12,7 @@ namespace Com.MultiPlayerProject
         public float sprintModifier;
         private Rigidbody rig;
         public Camera normalCam;
+        public GameObject cameraParent;
         public Transform weaponParent;
         private float basefov;
         private float sprintFovModifier = 1.25f;
@@ -29,8 +30,13 @@ namespace Com.MultiPlayerProject
         #region MonoBehaviorCallbacks
         void Start()
         {
+            cameraParent.SetActive(photonView.IsMine);
+            
             basefov = normalCam.fieldOfView;
-            Camera.main.enabled = false;
+            if (Camera.main)
+            {
+                Camera.main.enabled = false;
+            }
             rig = GetComponent<Rigidbody>();
             weaponParentOrigin = weaponParent.localPosition;
         }

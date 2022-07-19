@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.MultiPlayerProject
 {
     public class Sway : MonoBehaviour
+
     {
         #region Variables
 
