@@ -453,7 +453,7 @@ MonoBehaviour:
   normalCam: {fileID: 6127265542203580031}
   cameraParent: {fileID: 6127265543210972660}
   weaponParent: {fileID: 6127265542253345397}
-  jumpForce: 70
+  jumpForce: 1000
   max_Health: 700
   GroundDetector: {fileID: 6127265542806306188}
   Ground:
