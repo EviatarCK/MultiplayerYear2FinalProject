@@ -253,7 +253,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   normalCam: {fileID: 6127265542203580031}
   cameraParent: {fileID: 6127265543210972660}
   weaponParent: {fileID: 6127265542253345397}
-  jumpForce: 1000
+  jumpForce: 500
   max_Health: 700
   GroundDetector: {fileID: 6127265542806306188}
   Ground:
@@ -613,7 +613,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.134
+  near clip plane: 0.19
   far clip plane: 1000
   field of view: 45
   orthographic: 0
