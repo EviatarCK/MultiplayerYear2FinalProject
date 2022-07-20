@@ -27,6 +27,10 @@ namespace Com.MultiPlayerProject
         }
         private void Update()
         {
+            if (Pause.paused)
+            {
+                return;
+            }
             UpdateSway();
         }
 

@@ -24,6 +24,12 @@ namespace Com.MultiPlayerProject
         private void Update()
         {
 
+            if (Pause.paused && photonView.IsMine)
+            {
+                return;
+            }
+
+
             if (photonView.IsMine && Input.GetKeyDown(KeyCode.Alpha1))
             {
                 photonView.RPC("Equip", RpcTarget.All, 0);

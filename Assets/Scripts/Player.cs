@@ -28,6 +28,7 @@ namespace Com.MultiPlayerProject
         private Manager manager;
         public Weapon weapon;
 
+
         private Transform ui_healthbar;
 
 
@@ -78,6 +79,24 @@ namespace Com.MultiPlayerProject
             bool IsGrounded = Physics.Raycast(GroundDetector.position, Vector3.down, 0.1f, Ground);
             bool IsJumping = jump && IsGrounded;
             bool IsSprinting = sprint && t_vmove > 0 && !IsJumping && IsGrounded;
+            bool pause = Input.GetKeyDown(KeyCode.Escape);
+
+            if (pause)
+            {
+                GameObject.Find("Pause").GetComponent<Pause>().TogglePause();
+            }
+
+            if (Pause.paused)
+            {
+                t_hmove = 0f;
+                t_vmove = 0f;
+                sprint = false;
+                jump = false;
+                pause = false;
+                IsGrounded = false;
+                IsJumping = false;
+                IsSprinting = false;
+            }
 
             if (IsJumping)
             {
@@ -130,7 +149,20 @@ namespace Com.MultiPlayerProject
             bool IsJumping = jump && IsGrounded;
         
             bool IsSprinting = sprint && t_vmove > 0 && !IsJumping && IsGrounded;
-        
+
+            if (Pause.paused)
+            {
+                t_hmove = 0f;
+                t_vmove = 0f;
+                sprint = false;
+                jump = false;
+                IsGrounded = false;
+                IsJumping = false;
+                IsSprinting = false;
+            }
+
+
+
             Vector3 t_direction = new Vector3(t_hmove, 0, t_vmove);
             t_direction.Normalize();
 

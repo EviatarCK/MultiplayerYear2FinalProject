@@ -8,6 +8,14 @@ namespace Com.MultiPlayerProject
     public class MainMenu : MonoBehaviour
     {
         public Launcher launcher;
+
+
+        private void Start()
+        {
+            Pause.paused = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         public void JoinMatch()
         {
             launcher.Join();
