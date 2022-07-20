@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 namespace Com.MultiPlayerProject
@@ -30,6 +31,7 @@ namespace Com.MultiPlayerProject
 
 
         private Transform ui_healthbar;
+        private Text ui_userName;
 
 
         #endregion
@@ -58,7 +60,9 @@ namespace Com.MultiPlayerProject
             if (photonView.IsMine)
             {
                 ui_healthbar = GameObject.Find("HUD/Health/Bar").transform;
+                ui_userName = GameObject.Find("HUD/Username/Text").GetComponent<Text>();
                 RefreshHealthBar();
+                ui_userName.text = Launcher.myProfile.username;
             }
 
         }

@@ -7,6 +7,15 @@ using Photon.Realtime;
 
 namespace Com.MultiPlayerProject
 {
+    public class ProfileData
+    {
+        public string username;
+        public int Level;
+        public int xp;
+    }
+
+
+
     public class Launcher : MonoBehaviourPunCallbacks
     {
         public InputField roomnameField;
@@ -17,6 +26,8 @@ namespace Com.MultiPlayerProject
         public GameObject tabCreate;
         public GameObject buttonRoom;
         private List<RoomInfo> roomList;
+        public InputField usernameField;
+        public static ProfileData myProfile = new ProfileData();
 
 
         public void Awake()
@@ -138,6 +149,15 @@ namespace Com.MultiPlayerProject
         }
         public void StartGame()
         {
+            if (string.IsNullOrEmpty(usernameField.text))
+            {
+                myProfile.username = "User" + Random.Range(100, 1000);
+            }
+            else
+            {
+                myProfile.username = usernameField.text;
+            }
+
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
                 PhotonNetwork.LoadLevel(1);
