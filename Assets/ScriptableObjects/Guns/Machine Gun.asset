@@ -21,3 +21,5 @@ MonoBehaviour:
   kickback: 0.05
   aimSpeed: 9
   prefab: {fileID: 1702471577898498243, guid: 2ee8e5b0817cb5a49b7aacdab59cf5b0, type: 3}
+  gunshotSound: {fileID: 8300000, guid: c405745ef11bebf4bb0b2b39f6253b74, type: 3}
+  pitchRandomization: 0.1

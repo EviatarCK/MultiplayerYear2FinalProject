@@ -9,11 +9,15 @@ namespace Com.MultiPlayerProject
     {
         #region Variables
         public Gun[] loadOut;
+
+        [HideInInspector] public Gun currentGunData;
+
+
         public Transform weaponParent;
         public GameObject bulletHolePrefab;
         public LayerMask canBeShot;
         public bool isAiming = false;
-
+        public AudioSource sfx;
         private float currentCooldown;
         private int currentIndex;
         private GameObject currentWeapon;
@@ -94,6 +98,7 @@ namespace Com.MultiPlayerProject
             t_newWeapon.GetComponent<Sway>().isMine = photonView.IsMine;
 
             currentWeapon = t_newWeapon;
+            currentGunData = loadOut[p_ind];
         }
 
         void Aim(bool p_isAiming)
@@ -149,6 +154,13 @@ namespace Com.MultiPlayerProject
                     }
                 }
             }
+
+            //sound
+            sfx.Stop();
+            sfx.clip = currentGunData.gunshotSound;
+            sfx.pitch = 1 - currentGunData.pitchRandomization + Random.Range(-currentGunData.pitchRandomization, currentGunData.pitchRandomization);
+            sfx.Play();
+
 
             //gun fx
             currentWeapon.transform.Rotate(-loadOut[currentIndex].recoil, 0, 0);

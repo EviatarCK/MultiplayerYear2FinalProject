@@ -17,6 +17,9 @@ MonoBehaviour:
   fireRate: 0.15
   bloom: 20
   recoil: 10
+  automatic: 0
   kickback: 0.15
   aimSpeed: 9
   prefab: {fileID: 1702471577898498243, guid: 249ee670764f21147a1b62422f49a75b, type: 3}
+  gunshotSound: {fileID: 8300000, guid: c405745ef11bebf4bb0b2b39f6253b74, type: 3}
+  pitchRandomization: 0.05

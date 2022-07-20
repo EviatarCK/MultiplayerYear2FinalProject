@@ -14,4 +14,6 @@ public class Gun : ScriptableObject
     public float kickback;
     public float aimSpeed;
     public GameObject prefab;
+    public AudioClip gunshotSound;
+    public float pitchRandomization;
 }
