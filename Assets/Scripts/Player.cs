@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 
 namespace Com.MultiPlayerProject
 {
@@ -29,6 +30,8 @@ namespace Com.MultiPlayerProject
         private Manager manager;
         public Weapon weapon;
 
+        public ProfileData playerProfile;
+        public TextMeshPro playerUsernameTXT;
 
         private Transform ui_healthbar;
         private Text ui_userName;
@@ -63,9 +66,12 @@ namespace Com.MultiPlayerProject
                 ui_userName = GameObject.Find("HUD/Username/Text").GetComponent<Text>();
                 RefreshHealthBar();
                 ui_userName.text = Launcher.myProfile.username;
+
+                photonView.RPC("SyncProfile", RpcTarget.All, Launcher.myProfile.username, Launcher.myProfile.Level, Launcher.myProfile.xp);
             }
 
         }
+
 
         private void Update()
         {
@@ -208,15 +214,19 @@ namespace Com.MultiPlayerProject
             targetWeaponBobPosition = weaponParentOrigin + new Vector3(Mathf.Cos(p_z) * p_x_intensity * t_aim_adjust, Mathf.Sin(p_z * 2) * p_y_intensity * t_aim_adjust, 0);
         }
 
+        [PunRPC]
+        private void SyncProfile(string p_username, int p_level, int p_xp)
+        {
+            playerProfile = new ProfileData(p_username, p_level, p_xp);
+            playerUsernameTXT.text = playerProfile.username;
+        }
+
         void RefreshHealthBar()
         {
             float t_health_ratio = (float)current_Health / (float)max_Health;
             ui_healthbar.localScale = Vector3.Lerp(ui_healthbar.localScale, new Vector3(t_health_ratio, 1, 1), Time.deltaTime * 8);
         }
-
-
         #endregion
-
 
         #region Public Methods
 

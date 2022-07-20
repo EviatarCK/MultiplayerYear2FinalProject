@@ -12,6 +12,19 @@ namespace Com.MultiPlayerProject
         public string username;
         public int Level;
         public int xp;
+
+        public ProfileData()
+        {
+            this.username = "DEFAULT USERNAME";
+            this.Level = 0;
+            this.xp = 0;
+        }
+        public ProfileData(string u, int i, int x)
+        {
+            this.username = u;
+            this.Level = i;
+            this.xp = x;
+        }
     }
 
 
