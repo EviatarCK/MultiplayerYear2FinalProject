@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 namespace Com.MultiPlayerProject
 {
@@ -18,12 +19,24 @@ namespace Com.MultiPlayerProject
         public LayerMask canBeShot;
         public bool isAiming = false;
         public AudioSource sfx;
+        public AudioClip hitmarkerSound;
         private float currentCooldown;
         private int currentIndex;
         private GameObject currentWeapon;
+        private Image hitmarkerImage;
+        private float hitmarkerFWait;
+
+        private Color CLEARWHITE = new Color(1, 1, 1, 0);
+
         #endregion
 
         #region MonoBehaviorCallbacks
+
+        private void Start()
+        {
+            hitmarkerImage = GameObject.Find("HUD/Hitmarker/Image").GetComponent<Image>();
+            hitmarkerImage.color = CLEARWHITE;
+        }
 
         private void Update()
         {
@@ -74,9 +87,20 @@ namespace Com.MultiPlayerProject
 
                 // weapon position lock after recoil
                 currentWeapon.transform.localPosition = Vector3.Lerp(currentWeapon.transform.localPosition, Vector3.zero, Time.deltaTime * 4);
-
-
             }
+
+            if (photonView.IsMine)
+            {
+                if (hitmarkerFWait > 0)
+                {
+                    hitmarkerFWait -= Time.deltaTime;
+                }
+                else
+                {
+                    hitmarkerImage.color = Color.Lerp(hitmarkerImage.color, CLEARWHITE, Time.deltaTime * 2f);
+                }
+            }
+
         }
         #endregion
 
@@ -150,7 +174,13 @@ namespace Com.MultiPlayerProject
                     //shooting other players on network
                     if (t_hit.collider.gameObject.layer == 10)
                     {
+                        //give damage
                         t_hit.collider.gameObject.GetPhotonView().RPC("TakeDamage", RpcTarget.All, loadOut[currentIndex].damage);
+
+                        //show hitmarker
+                        hitmarkerImage.color = Color.white;
+                        sfx.PlayOneShot(hitmarkerSound);
+                        hitmarkerFWait = 1f;
                     }
                 }
             }

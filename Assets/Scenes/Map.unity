@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 141070179}
   - component: {fileID: 141070178}
   - component: {fileID: 141070182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 303310783}
   - component: {fileID: 303310782}
   - component: {fileID: 303310781}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glass (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3878,7 +3878,7 @@ GameObject:
   - component: {fileID: 1958455704}
   - component: {fileID: 1958455703}
   - component: {fileID: 1958455702}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Glass (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
